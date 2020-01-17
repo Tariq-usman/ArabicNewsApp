@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/main_frame_header"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_gravity="center_vertical"
+        android:orientation="horizontal"
+        android:visibility="visible">
+
+        <FrameLayout
+            android:id="@+id/main_search_bar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginHorizontal="40dp"
+                android:background="@android:color/transparent"
+                android:hint="search"
+                android:inputType="text"
+                android:maxLines="1"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_logo"
+                android:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/bar_code_code_scanner_home"
+                android:layout_width="35dp"
+                android:layout_height="30dp"
+                android:layout_gravity="right|center_vertical"
+                android:src="@drawable/ic_search" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/special_report_layout"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/bg_bottom_nav"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/back_btn"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:padding="14dp"
+                android:src="@drawable/ic_back" />
+
+            <TextView
+                android:id="@+id/tv_special_report"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginHorizontal="50dp"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:inputType="text"
+                android:maxLines="1"
+                android:text="Special Reports"
+                android:textColor="@color/whiteColor" />
+
+
+            <TextView
+                android:id="@+id/tv_count"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/white_circle"
+                android:gravity="center"
+                android:text="10"
+                android:textColor="@color/grayColor" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/settings_layout"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/bg_bottom_nav"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/back_btn_settings"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="4dp"
+                android:padding="14dp"
+                android:visibility="invisible"
+                android:src="@drawable/ic_back" />
+
+            <TextView
+                android:id="@+id/tv_settings_page"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="50dp"
+                android:layout_gravity="center_vertical"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:inputType="text"
+                android:maxLines="1"
+                android:text="Menu"
+                android:textColor="@color/whiteColor"
+                android:textSize="@dimen/sixteen_sp" />
+
+        </FrameLayout>
+
+
+    </FrameLayout>
+
+
+    <include layout="@layout/content_main" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="-50dp"
+        android:background="@drawable/bg_bottom_nav"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/home_layout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <LinearLayout
+                android:id="@+id/layout_home"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_bottom_nav_items"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/iv_home"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_home" />
+
+                <TextView
+                    android:id="@+id/tv_home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Home"
+                    android:textColor="@color/purpleColor"
+                    android:textSize="9sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/category_layout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/layout_notifications"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/iv_notification"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_notification_white" />
+
+                <TextView
+                    android:id="@+id/tv_notification"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="2dp"
+                    android:gravity="center"
+                    android:text="Notifications"
+                    android:textColor="@color/whiteColor"
+                    android:textSize="9sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/layout_saved"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/iv_saved"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_saved_white" />
+
+                <TextView
+                    android:id="@+id/tv_saved"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Saved"
+                    android:textColor="@color/whiteColor"
+                    android:textSize="9sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <LinearLayout
+                android:id="@+id/layout_settings"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/iv_settings"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_settings_white" />
+
+                <TextView
+                    android:id="@+id/tv_settings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Settings"
+                    android:textColor="@color/whiteColor"
+                    android:textSize="9sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

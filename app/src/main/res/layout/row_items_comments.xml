@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginHorizontal="8dp"
+            android:src="@drawable/ic_person_on_comment" />
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="6dp"
+                android:layout_marginVertical="4dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="20dp"
+                android:elevation="3dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Name"
+                        android:textColor="@color/grayColor"
+                        android:textSize="@dimen/fourteen_sp" />
+
+                    <TextView
+                        android:id="@+id/tv_comments"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Lurem Ipsum is simply dummy text of the printing"
+                        android:textColor="@color/grayColor"
+                        android:textSize="@dimen/ten_sp" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="40dp"
+                android:layout_marginTop="6dp"
+                app:cardCornerRadius="4dp"
+                android:layout_marginHorizontal="3dp"
+                android:layout_gravity="right"
+                android:elevation="3dp"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:layout_marginHorizontal="6dp"
+                        android:layout_marginVertical="2dp"
+                        android:src="@drawable/ic_like_on_comment"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="5"
+                        android:textSize="@dimen/twelve_sp"
+                        android:textColor="@color/grayColor"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </FrameLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <View
+            android:layout_width="50dp"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="8dp" />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:paddingLeft="10dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2hr"
+            android:textColor="@color/grayColor"
+            android:layout_marginRight="14dp"
+            android:textSize="@dimen/twelve_sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Like"
+            android:textColor="@color/grayColor"
+            android:layout_marginRight="14dp"
+            android:textSize="@dimen/twelve_sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reply"
+            android:textColor="@color/grayColor"
+            android:layout_marginRight="14dp"
+            android:textSize="@dimen/twelve_sp"/>
+
+    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Previous Reply"
+        android:textColor="@color/grayColor"
+        android:textSize="@dimen/twelve_sp"/>
+
+</LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
