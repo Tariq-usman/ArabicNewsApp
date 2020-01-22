@@ -20,12 +20,18 @@ import com.system.user.arabicnewsapp.R;
 import com.system.user.arabicnewsapp.adapters.home.latest_news.LatestNewsAdapter;
 import com.system.user.arabicnewsapp.adapters.home.latest_news.LatestOpinionArticlesAdapter;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class LatestNewsFragment extends Fragment implements View.OnClickListener {
     private RecyclerView recyclerView,recyclerViewOpinionArticles,recyclerViewTopStories;
     private AdView adView;
     AdRequest adRequest;
     private LinearLayout special_report;
     private FrameLayout layoutSpecialReport,layoutHome;
+
+    private String[] title = {"Ministry of IT and Telecommunication", "PTA Test Zong 5G network"};
+    ArrayList<String> arrayList = new ArrayList<>(Arrays.asList("http://androhub.com/demo/demo.mp4", "http://androhub.com/demo/demo.mp4"));
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -46,7 +52,7 @@ public class LatestNewsFragment extends Fragment implements View.OnClickListener
         recyclerView = view.findViewById(R.id.recycler_view_latest);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(new LatestNewsAdapter(getContext()));
+        recyclerView.setAdapter(new LatestNewsAdapter(getContext(),arrayList,title));
 
 
         recyclerViewOpinionArticles = view.findViewById(R.id.recycler_view_latest_opinion_articles);
@@ -58,7 +64,7 @@ public class LatestNewsFragment extends Fragment implements View.OnClickListener
         recyclerViewTopStories = view.findViewById(R.id.recycler_view_latest_top_stories);
         recyclerViewTopStories.setHasFixedSize(true);
         recyclerViewTopStories.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerViewTopStories.setAdapter(new LatestNewsAdapter(getContext()));
+        recyclerViewTopStories.setAdapter(new LatestNewsAdapter(getContext(), arrayList, title));
         return view;
     }
 

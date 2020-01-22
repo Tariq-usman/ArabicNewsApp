@@ -9,11 +9,13 @@
         android:layout_height="wrap_content"
         android:paddingHorizontal="6dp"
         android:orientation="horizontal">
-        <ImageView
+        <VideoView
+            android:id="@+id/saved_video_view"
             android:layout_width="120dp"
             android:layout_height="80dp"
             android:src="@drawable/news_image"/>
         <TextView
+            android:id="@+id/tv_saved_article"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="6dp"
@@ -37,7 +39,7 @@
             android:textColor="@color/grayColor"
             android:textSize="12dp" />
 
-        <ImageView
+       <!-- <ImageView
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:src="@drawable/ic_like_empty" />
@@ -48,7 +50,7 @@
             android:layout_marginHorizontal="4dp"
             android:text="123456"
             android:textColor="@color/grayColor"
-            android:textSize="12dp" />
+            android:textSize="12dp" />-->
 
         <ImageView
             android:layout_width="16dp"

@@ -5,17 +5,28 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.system.user.arabicnewsapp.R;
+import com.system.user.arabicnewsapp.local_db.ArabicNews;
+import com.system.user.arabicnewsapp.local_db.ArabicNewsViewModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SavedArticlesAdapter extends RecyclerView.Adapter<SavedArticlesAdapter.ViewHolder> {
     Context context;
     private String[] titles;
-    public SavedArticlesAdapter(Context context) {
-        this.context = context;
+    private List<ArabicNews> arabicNews= new ArrayList<>();
+    ArabicNewsViewModel viewModel;
+    byte[] bytArray;
+    public void setData(List<ArabicNews> arabicNews, ArabicNewsViewModel arabicNewsViewModel){
+        this.arabicNews = arabicNews;
+        this.viewModel = arabicNewsViewModel;
     }
 
     @NonNull
@@ -28,7 +39,10 @@ public class SavedArticlesAdapter extends RecyclerView.Adapter<SavedArticlesAdap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-       // holder.textView.setText(titles[position]);
+        ArabicNews news= arabicNews.get(position);
+        holder.textView.setText(news.getVid_title());
+        holder.videoView.setVideoPath(news.getVid_path());
+        holder.videoView.start();
         /*holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,14 +56,16 @@ public class SavedArticlesAdapter extends RecyclerView.Adapter<SavedArticlesAdap
 
     @Override
     public int getItemCount() {
-        return 5;
+        return arabicNews.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView textView;
+        private VideoView videoView;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            textView = itemView.findViewById(R.id.tv_title);
+            videoView = itemView.findViewById(R.id.saved_video_view);
+            textView = itemView.findViewById(R.id.tv_saved_article);
         }
     }
 }
