@@ -23,4 +23,8 @@ public class ArabicNewsViewModel extends AndroidViewModel {
     public LiveData<List<ArabicNews>> getAllData() {
         return allData;
     }
+
+    public void delete(ArabicNews arabicNews){
+        newsRepository.delete(arabicNews);
+    }
 }

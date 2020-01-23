@@ -9,6 +9,7 @@
         android:id="@+id/recycler_saved_articles"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginHorizontal="8dp"
         tools:listitem="@layout/row_items_saved_articles"/>
 
 </LinearLayout>

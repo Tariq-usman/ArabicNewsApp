@@ -1,4 +1,4 @@
-package com.system.user.arabicnewsapp;
+package com.system.user.arabicnewsapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.system.user.arabicnewsapp.R;
 import com.system.user.arabicnewsapp.fragments.home.HomeFragment;
 import com.system.user.arabicnewsapp.fragments.notificatons.NotificationsFragment;
 import com.system.user.arabicnewsapp.fragments.saved.SavedFragment;

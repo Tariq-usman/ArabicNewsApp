@@ -1,4 +1,4 @@
-package com.system.user.arabicnewsapp;
+package com.system.user.arabicnewsapp.others;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;

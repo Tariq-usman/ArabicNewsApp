@@ -10,6 +10,8 @@ import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.system.user.arabicnewsapp.R;
 
@@ -17,6 +19,7 @@ public class SavedFragment extends Fragment implements View.OnClickListener {
     private LinearLayout layoutSaved,layoutHistory;
     private View viewSaved,viewHistory;
     private FrameLayout layout,layoutSearchBar,layoutMenu;
+    ItemTouchHelper itemTouchHelper;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -38,6 +41,7 @@ public class SavedFragment extends Fragment implements View.OnClickListener {
         layoutHistory.setOnClickListener(this);
         viewSaved = view.findViewById(R.id.view_saved_articles);
         viewHistory = view.findViewById(R.id.view_history);
+
         return view;
     }
 

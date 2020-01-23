@@ -20,6 +20,10 @@ public class ArabicNewsRepository {
         new InsertNewsDataAsyncTask(newsDao).execute(arabicNews);
     }
 
+    public void delete(ArabicNews arabicNews){
+        new DeleteNewsDataAsyncTask(newsDao).execute(arabicNews);
+    }
+
     public LiveData<List<ArabicNews>> getNewsData(){
         return newsData;
     }
@@ -31,6 +35,18 @@ public class ArabicNewsRepository {
         @Override
         protected Void doInBackground(ArabicNews... arabicNews) {
             newsDao.insert(arabicNews[0]);
+            return null;
+        }
+    }
+
+    private static class DeleteNewsDataAsyncTask extends AsyncTask<ArabicNews, Void,Void>{
+        private ArabicNewsDao newsDao;
+        private DeleteNewsDataAsyncTask(ArabicNewsDao arabicNewsDao){
+            this.newsDao = arabicNewsDao;
+        }
+        @Override
+        protected Void doInBackground(ArabicNews... arabicNews) {
+            newsDao.delete(arabicNews[0]);
             return null;
         }
     }
