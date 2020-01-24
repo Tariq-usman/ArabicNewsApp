@@ -1,4 +1,4 @@
-package com.system.user.arabicnewsapp.adapters;
+package com.system.user.arabicnewsapp.adapters.notifications;
 
 import android.content.Context;
 import android.view.LayoutInflater;

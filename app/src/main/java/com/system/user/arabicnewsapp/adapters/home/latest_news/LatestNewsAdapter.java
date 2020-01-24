@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -32,6 +33,7 @@ import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.Volley;
 import com.system.user.arabicnewsapp.fragments.home.LatestNewsFragment;
 import com.system.user.arabicnewsapp.fragments.home.NewsDetailsFragment;
+import com.system.user.arabicnewsapp.interfaces.RecyclerClickInterface;
 import com.system.user.arabicnewsapp.others.InputStreamVolleyRequest;
 import com.system.user.arabicnewsapp.R;
 import com.system.user.arabicnewsapp.local_db.ArabicNews;
@@ -53,13 +55,13 @@ public class LatestNewsAdapter extends RecyclerView.Adapter<LatestNewsAdapter.Vi
     ArrayList<String> arrayList;
     String[] title;
     ArabicNewsViewModel viewModel;
-    private VideoView videoView;
+    RecyclerClickInterface clickInterface;
 
-    public LatestNewsAdapter(Context context, ArrayList<String> arrayList, String[] title, VideoView videoView) {
+    public LatestNewsAdapter(Context context, ArrayList<String> arrayList, String[] title, RecyclerClickInterface clickInterface) {
         this.context = context;
         this.arrayList = arrayList;
         this.title = title;
-        this.videoView = videoView;
+        this.clickInterface = clickInterface;
     }
 
     @NonNull
@@ -84,26 +86,7 @@ public class LatestNewsAdapter extends RecyclerView.Adapter<LatestNewsAdapter.Vi
         holder.videoView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-
-                videoView.setVideoPath(arrayList.get(position));
-                videoView.start();
-                LatestNewsFragment.progressBar.setVisibility(View.VISIBLE);
-                videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                    @Override
-                    public void onPrepared(MediaPlayer mp) {
-                        // TODO Auto-generated method stub
-                        mp.start();
-                        mp.setOnVideoSizeChangedListener(new MediaPlayer.OnVideoSizeChangedListener() {
-                            @Override
-                            public void onVideoSizeChanged(MediaPlayer mp, int arg1,
-                                                           int arg2) {
-                                // TODO Auto-generated method stub
-                                LatestNewsFragment.progressBar.setVisibility(View.GONE);
-                                mp.start();
-                            }
-                        });
-                    }
-                });
+                clickInterface.interfaceOnClick(v, position);
                 return true;
             }
         });
@@ -112,9 +95,9 @@ public class LatestNewsAdapter extends RecyclerView.Adapter<LatestNewsAdapter.Vi
         holder.imageViewSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MyCustomAlertDialog();
-                downloadFile(arrayList.get(position), fileName);
-
+//                MyCustomAlertDialog();
+                holder.progressBar.setVisibility(View.VISIBLE);
+                downloadFile(arrayList.get(position), fileName, holder);
                 productId = 12;
                 p_title = holder.textViewTitle.getText().toString();
                 p_count = holder.textViewCount.getText().toString();
@@ -154,9 +137,11 @@ public class LatestNewsAdapter extends RecyclerView.Adapter<LatestNewsAdapter.Vi
         private ImageView imageViewSave, imageView, ivShare;
         private VideoView videoView;
         private ImageButton btnPlay;
+        private ProgressBar progressBar;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            progressBar = itemView.findViewById(R.id.items_progress_bar);
             btnPlay = itemView.findViewById(R.id.btn_play);
             videoView = itemView.findViewById(R.id.video_view);
             imageView = itemView.findViewById(R.id.image);
@@ -168,12 +153,11 @@ public class LatestNewsAdapter extends RecyclerView.Adapter<LatestNewsAdapter.Vi
         }
     }
 
-    private void downloadFile(String url, final String fileName) {
+    private void downloadFile(String url, final String fileName, final ViewHolder holder) {
         InputStreamVolleyRequest request = new InputStreamVolleyRequest(Request.Method.GET, url, new Response.Listener<byte[]>() {
             @Override
             public void onResponse(byte[] response) {
                 try {
-
                     if (response != null) {
                         File dir = new File(context.getFilesDir() + "/ArabicNews/");
                         try {
@@ -186,7 +170,6 @@ public class LatestNewsAdapter extends RecyclerView.Adapter<LatestNewsAdapter.Vi
                                 }
                             }
 
-
                             pathWithName = context.getFilesDir() + "/ArabicNews/" + p_title + ".mp4";
                             Log.i("path", pathWithName);
                             OutputStream out = new FileOutputStream(pathWithName);
@@ -194,22 +177,16 @@ public class LatestNewsAdapter extends RecyclerView.Adapter<LatestNewsAdapter.Vi
                             out.close();
                             viewModel = ViewModelProviders.of((FragmentActivity) context).get(ArabicNewsViewModel.class);
                             ArabicNews arabicNews = new ArabicNews(productId, p_title, pathWithName, count, p_time);
-                            // Note note = new Note(productId, image, p_title, count, p_time);
                             viewModel.insert(arabicNews);
-                            MyDialog.dismiss();
-                            //exitAppDialog();
+                            holder.progressBar.setVisibility(View.GONE);
                             Toast.makeText(context, "File Download Sucessfully!", Toast.LENGTH_SHORT).show();
                             Toast.makeText(context, "Note insert Successfully", Toast.LENGTH_SHORT).show();
                         } catch (Exception e) {
                             e.printStackTrace();
-                            /*holder.btn_download.setEnabled(true);
-                            progressBar.setVisibility(View.GONE);*/
                         }
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
-                    /*holder.btn_download.setEnabled(true);
-                    progressBar.setVisibility(View.GONE);*/
                 }
             }
         }, new Response.ErrorListener() {

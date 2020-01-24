@@ -3,8 +3,14 @@ package com.system.user.arabicnewsapp.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.TranslateAnimation;
+import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -17,8 +23,10 @@ import com.system.user.arabicnewsapp.fragments.settings.SettingsFragment;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private LinearLayout linearLayoutHome, linearLayoutNotifications, linearLayoutSaved, linearLayoutSettings;
-    private ImageView imageViewHome, imageViewNotifications, imageViewSaved, imageViewSettings;
+    private ImageView imageViewLogo,imageViewSearch,imageViewHome, imageViewNotifications, imageViewSaved, imageViewSettings;
     private TextView textViewHome, textViewNotifications, textViewSaved, textViewSettings;
+    private EditText etSearch;
+    private FrameLayout layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +37,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (savedInstanceState == null){
             getSupportFragmentManager().beginTransaction().replace(R.id.main_container,new HomeFragment()).commit();
         }
+        imageViewLogo = findViewById(R.id.iv_logo);
+        imageViewSearch = findViewById(R.id.iv_search_view);
+        imageViewSearch.setOnClickListener(this);
         linearLayoutHome = findViewById(R.id.layout_home);
         linearLayoutHome.setOnClickListener(this);
         linearLayoutNotifications = findViewById(R.id.layout_notifications);
@@ -43,15 +54,54 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imageViewSaved = findViewById(R.id.iv_saved);
         imageViewSettings = findViewById(R.id.iv_settings);
 
+        etSearch = findViewById(R.id.et_search_view);
         textViewHome = findViewById(R.id.tv_home);
         textViewNotifications = findViewById(R.id.tv_notification);
         textViewSaved = findViewById(R.id.tv_saved);
         textViewSettings = findViewById(R.id.tv_settings);
+        etSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                int delayMillis = 8000;
+                Handler handler = new Handler();
+//                final View v = tvRQPoint; // your view
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        TranslateAnimation animate = new TranslateAnimation(etSearch.getWidth(),0,0,0);
+                        animate.setDuration(500);
+                        animate.setFillAfter(true);
+                        imageViewLogo.startAnimation(animate);
+                        imageViewLogo.setVisibility(View.VISIBLE);
+                        etSearch.setVisibility(View.GONE);
+                    }
+                },delayMillis);
+            }
+        });
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.iv_search_view:
+                TranslateAnimation animate = new TranslateAnimation(0,-etSearch.getWidth(),0,0);
+                animate.setDuration(500);
+                animate.setFillAfter(true);
+                imageViewLogo.startAnimation(animate);
+                imageViewLogo.setVisibility(View.GONE);
+                etSearch.setVisibility(View.VISIBLE);
+
+                break;
             case R.id.layout_home:
                 linearLayoutHome.setBackgroundResource(R.drawable.bg_bottom_nav_items);
                 imageViewHome.setImageResource(R.drawable.ic_home);

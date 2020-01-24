@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.system.user.arabicnewsapp.R;
-import com.system.user.arabicnewsapp.adapters.MostReadAdapter;
+import com.system.user.arabicnewsapp.adapters.home.most_read.MostReadAdapter;
 
 public class MostReadFragment extends Fragment {
     private RecyclerView recyclerView;

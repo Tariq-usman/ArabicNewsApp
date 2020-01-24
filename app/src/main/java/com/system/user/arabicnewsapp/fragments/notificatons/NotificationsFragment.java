@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.system.user.arabicnewsapp.R;
-import com.system.user.arabicnewsapp.adapters.NotificationsAdapter;
+import com.system.user.arabicnewsapp.adapters.notifications.NotificationsAdapter;
 
 public class NotificationsFragment extends Fragment {
     private RecyclerView recyclerView;

@@ -1,4 +1,4 @@
-package com.system.user.arabicnewsapp.adapters;
+package com.system.user.arabicnewsapp.adapters.home.most_read;
 
 import android.content.Context;
 import android.view.LayoutInflater;

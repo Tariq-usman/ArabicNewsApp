@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="4dp"
     android:orientation="vertical">
 
     <LinearLayout
@@ -27,7 +28,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="35dp"
+        android:layout_height="wrap_content"
         android:gravity="right|center_vertical"
         android:orientation="horizontal">
         <TextView
@@ -38,20 +39,6 @@
             android:text="2 hrs ago"
             android:textColor="@color/grayColor"
             android:textSize="12dp" />
-
-       <!-- <ImageView
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:src="@drawable/ic_like_empty" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="4dp"
-            android:text="123456"
-            android:textColor="@color/grayColor"
-            android:textSize="12dp" />-->
-
         <ImageView
             android:layout_width="16dp"
             android:layout_height="16dp"
@@ -83,7 +70,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height=".5dp"
-        android:layout_marginVertical="4dp"
+        android:layout_marginTop="2dp"
         android:background="@color/grayColor"/>
 
 </LinearLayout>
