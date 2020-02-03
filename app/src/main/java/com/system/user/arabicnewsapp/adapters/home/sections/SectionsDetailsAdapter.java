@@ -24,7 +24,7 @@ public class SectionsDetailsAdapter extends RecyclerView.Adapter<SectionsDetails
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_items_sections_details, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_items_latest, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
@@ -52,7 +52,7 @@ public class SectionsDetailsAdapter extends RecyclerView.Adapter<SectionsDetails
         private TextView textView;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            textView = itemView.findViewById(R.id.tv_title);
+//            textView = itemView.findViewById(R.id.tv_title);
         }
     }
 }

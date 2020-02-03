@@ -22,9 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/lightGrayColor"
-            android:text="Lurem Ipsum is simply dummy text of the printing Lurem Ipsum is simply dummy text of the printing Lurem Ipsum is simply dummy text of the printing Lurem Ipsum is simply dummy text of the printing
-Lurem Ipsum is simply dummy text of the printing Lurem Ipsum is simply dummy text of the printing
-Lurem Ipsum is simply dummy text of the printing Lurem Ipsum is simply dummy text of the printing"
+            android:text="Lurem Ipsum is simply dummy text of the printing."
             android:textColor="@color/purpleColor"
             android:textSize="@dimen/twelve_sp" />
 

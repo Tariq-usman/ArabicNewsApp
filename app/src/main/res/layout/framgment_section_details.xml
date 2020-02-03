@@ -45,6 +45,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:descendantFocusability="blocksDescendants"
             android:orientation="vertical">
 
             <FrameLayout
@@ -52,10 +53,52 @@
                 android:layout_height="250dp"
                 android:layout_marginVertical="1dp">
 
-                <ImageView
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/news_image" />
+                    android:layout_height="250dp"
+                    android:layout_marginVertical="1dp">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <VideoView
+                            android:id="@+id/main_latest_video_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+                        <ProgressBar
+                            android:id="@+id/main_progress_bar"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_gravity="center"
+                            android:visibility="gone" />
+                    </FrameLayout>
+
+
+                    <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:background="@color/lightGrayColor"
+                        android:gravity="center"
+                        android:paddingHorizontal="3dp"
+                        android:text="2 hr ago"
+                        android:textColor="@color/grayColor"
+                        android:textSize="14dp" />
+
+                    <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|right"
+                        android:background="@color/lightGrayColor"
+                        android:gravity="center"
+                        android:paddingHorizontal="3dp"
+                        android:text="Category"
+                        android:textColor="@color/grayColor"
+                        android:textSize="14dp" />
+
+                </FrameLayout>
 
                 <TextView
                     android:layout_width="80dp"
@@ -86,19 +129,6 @@
                 android:layout_height="35dp"
                 android:gravity="right|center_vertical"
                 android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/ic_like_empty" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="4dp"
-                    android:text="123456"
-                    android:textColor="@color/grayColor"
-                    android:textSize="12dp" />
 
                 <ImageView
                     android:layout_width="20dp"
@@ -154,7 +184,7 @@
                 android:layout_height="500dp"
                 android:layout_marginHorizontal="8dp"
                 android:overScrollMode="never"
-                tools:listitem="@layout/row_items_sections_details" />
+                tools:listitem="@layout/row_items_latest" />
 
             <LinearLayout
                 android:id="@+id/special_report"
@@ -192,7 +222,7 @@
                 android:layout_height="500dp"
                 android:layout_marginHorizontal="8dp"
                 android:overScrollMode="never"
-                tools:listitem="@layout/row_items_sections_details" />
+                tools:listitem="@layout/row_items_latest" />
 
 
             <com.google.android.gms.ads.AdView

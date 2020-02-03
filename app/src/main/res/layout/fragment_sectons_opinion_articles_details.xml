@@ -158,19 +158,6 @@
                         android:paddingVertical="2dp">
 
                         <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_like_fill" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="4dp"
-                            android:text="123456"
-                            android:textColor="@color/grayColor"
-                            android:textSize="12dp" />
-
-                        <ImageView
                             android:layout_width="26dp"
                             android:layout_height="20dp"
                             android:src="@drawable/ic_comment" />

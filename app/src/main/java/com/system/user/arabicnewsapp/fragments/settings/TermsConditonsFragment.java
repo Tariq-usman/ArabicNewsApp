@@ -1,5 +1,6 @@
 package com.system.user.arabicnewsapp.fragments.settings;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +18,7 @@ import com.system.user.arabicnewsapp.R;
 
 public class TermsConditonsFragment extends Fragment {
     private FrameLayout layoutSearchBar,layoutMenu;
-    private ImageView ivBackBtn;
+    private ImageView ivBackBtn,ivShare;
     private TextView textViewTitle;
     @Nullable
     @Override
@@ -36,6 +37,16 @@ public class TermsConditonsFragment extends Fragment {
             public void onClick(View v) {
                 getFragmentManager().beginTransaction().replace(R.id.main_container,new SettingsFragment()).commit();
 
+            }
+        });
+        ivShare = view.findViewById(R.id.iv_share_term_cond);
+        ivShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_TEXT,"");
+                startActivity(Intent.createChooser(intent,"Share via"));
             }
         });
         return view;

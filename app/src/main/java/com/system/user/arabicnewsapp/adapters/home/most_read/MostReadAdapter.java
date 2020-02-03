@@ -23,7 +23,7 @@ public class MostReadAdapter extends RecyclerView.Adapter<MostReadAdapter.ViewHo
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_items_most_read, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_items_latest, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }

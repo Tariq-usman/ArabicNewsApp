@@ -1,5 +1,6 @@
 package com.system.user.arabicnewsapp.fragments.settings;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +17,7 @@ import com.system.user.arabicnewsapp.R;
 
 public class NewsToolsFragment extends Fragment {
     private FrameLayout layoutSearchBar,layoutMenu;
-    private ImageView ivBackBtn;
+    private ImageView ivBackBtn,ivShare;
     private TextView textViewTitle;
     @Nullable
     @Override
@@ -40,7 +41,16 @@ public class NewsToolsFragment extends Fragment {
 
             }
         });
-
+        ivShare = view.findViewById(R.id.iv_share_news_tools);
+        ivShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_TEXT,"");
+                startActivity(Intent.createChooser(intent,"Share via"));
+            }
+        });
         return view;
     }
 }
