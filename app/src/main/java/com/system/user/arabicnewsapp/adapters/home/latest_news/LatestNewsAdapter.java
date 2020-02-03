@@ -179,8 +179,8 @@ public class LatestNewsAdapter extends RecyclerView.Adapter<LatestNewsAdapter.Vi
                             ArabicNews arabicNews = new ArabicNews(productId, p_title, pathWithName, count, p_time);
                             viewModel.insert(arabicNews);
                             holder.progressBar.setVisibility(View.GONE);
-                            Toast.makeText(context, "File Download Sucessfully!", Toast.LENGTH_SHORT).show();
-                            Toast.makeText(context, "Note insert Successfully", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "File Download Successfully..", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "Note insert Successfully..", Toast.LENGTH_SHORT).show();
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

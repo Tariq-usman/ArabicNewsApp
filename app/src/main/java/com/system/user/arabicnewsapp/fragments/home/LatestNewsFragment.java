@@ -1,6 +1,8 @@
 package com.system.user.arabicnewsapp.fragments.home;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,6 +21,7 @@ import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -29,7 +32,9 @@ import com.google.android.gms.ads.AdView;
 import com.system.user.arabicnewsapp.R;
 import com.system.user.arabicnewsapp.adapters.home.latest_news.LatestNewsAdapter;
 import com.system.user.arabicnewsapp.adapters.home.latest_news.LatestOpinionArticlesAdapter;
+import com.system.user.arabicnewsapp.fragments.dialog_fragments.CommentsFragment;
 import com.system.user.arabicnewsapp.interfaces.RecyclerClickInterface;
+import com.system.user.arabicnewsapp.utils.NetworkHelper;
 
 import java.security.PrivateKey;
 import java.util.ArrayList;
@@ -44,8 +49,9 @@ public class LatestNewsFragment extends Fragment implements View.OnClickListener
     private LinearLayout special_report;
     private FrameLayout layoutSpecialReport, layoutHome;
     private ProgressBar progressBar;
-    private ImageView ivShare;
+    private ImageView ivComments,ivShare;
     private int pos;
+    private boolean isNetworkAvailable;
 
 
     private String[] title = {"Ministry of IT and Telecommunication", "PTA Test Zong 5G network"};
@@ -55,6 +61,10 @@ public class LatestNewsFragment extends Fragment implements View.OnClickListener
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_latest, container, false);
+
+        isNetworkAvailable = NetworkHelper.isNetworkAvailable(getContext());
+        Log.e("Network Availability", String.valueOf(isNetworkAvailable));
+
         videoView = view.findViewById(R.id.main_latest_video_view);
         final MediaController mediacontroller = new MediaController(getContext());
         mediacontroller.setAnchorView(videoView);
@@ -101,6 +111,8 @@ public class LatestNewsFragment extends Fragment implements View.OnClickListener
         layoutSpecialReport = getActivity().findViewById(R.id.special_report_layout);
         layoutSpecialReport.setVisibility(View.GONE);
 
+        ivComments = view.findViewById(R.id.latest_news_comments);
+        ivComments.setOnClickListener(this);
         ivShare = view.findViewById(R.id.share);
         ivShare.setOnClickListener(this);
         special_report = view.findViewById(R.id.special_report);
@@ -109,7 +121,7 @@ public class LatestNewsFragment extends Fragment implements View.OnClickListener
         recyclerView = view.findViewById(R.id.recycler_view_latest);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(new LatestNewsAdapter(getContext(), arrayList, title,this));
+        recyclerView.setAdapter(new LatestNewsAdapter(getContext(), arrayList, title, this));
 
 
         recyclerViewOpinionArticles = view.findViewById(R.id.recycler_view_latest_opinion_articles);
@@ -128,6 +140,10 @@ public class LatestNewsFragment extends Fragment implements View.OnClickListener
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.latest_news_comments:
+                CommentsFragment commentsFragment = new CommentsFragment();
+                commentsFragment.show(getFragmentManager(),"Comments");
+                break;
             case R.id.share:
                 Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
                 shareIntent.setType("text/plain");
@@ -144,25 +160,30 @@ public class LatestNewsFragment extends Fragment implements View.OnClickListener
 
     @Override
     public void interfaceOnClick(View view, int position) {
-        videoView.setVideoPath(arrayList.get(position));
-        pos = position;
-        videoView.start();
-        progressBar.setVisibility(View.VISIBLE);
-        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mp) {
-                // TODO Auto-generated method stub
-                mp.start();
-                mp.setOnVideoSizeChangedListener(new MediaPlayer.OnVideoSizeChangedListener() {
-                    @Override
-                    public void onVideoSizeChanged(MediaPlayer mp, int arg1,
-                                                   int arg2) {
-                        // TODO Auto-generated method stub
-                        progressBar.setVisibility(View.GONE);
-                        mp.start();
-                    }
-                });
-            }
-        });
+
+        if (isNetworkAvailable == true) {
+            videoView.setVideoPath(arrayList.get(position));
+            pos = position;
+            videoView.start();
+            progressBar.setVisibility(View.VISIBLE);
+            videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                @Override
+                public void onPrepared(MediaPlayer mp) {
+                    // TODO Auto-generated method stub
+                    mp.start();
+                    mp.setOnVideoSizeChangedListener(new MediaPlayer.OnVideoSizeChangedListener() {
+                        @Override
+                        public void onVideoSizeChanged(MediaPlayer mp, int arg1,
+                                                       int arg2) {
+                            // TODO Auto-generated method stub
+                            progressBar.setVisibility(View.GONE);
+                            mp.start();
+                        }
+                    });
+                }
+            });
+        } else {
+            Toast.makeText(getContext(), "Please check your network connectivity!", Toast.LENGTH_SHORT).show();
+        }
     }
 }

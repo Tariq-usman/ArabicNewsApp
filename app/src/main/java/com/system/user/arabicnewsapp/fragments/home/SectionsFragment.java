@@ -18,6 +18,8 @@ public class SectionsFragment extends Fragment {
     private RecyclerView recyclerView;
 
     private String[] titles = {"News","Sports","Business","Life","Opinion Articles","Life"};
+    private final int[] backgroundColors = {R.color.colorAccent, R.color.colorPrimary, R.color.colorPrimaryDark,
+            R.color.darkPinkColor, R.color.lightGrayColor, R.color.darkPinkColor};
 
     @Nullable
     @Override
@@ -26,7 +28,7 @@ public class SectionsFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recycler_view_sections);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
-        recyclerView.setAdapter(new SectionsAdapter(getContext(),titles));
+        recyclerView.setAdapter(new SectionsAdapter(getContext(),titles,backgroundColors));
         return view;
     }
 }

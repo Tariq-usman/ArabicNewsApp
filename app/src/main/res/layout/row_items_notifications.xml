@@ -22,7 +22,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/lightGrayColor"
-            android:text="Lurem Ipsum is simply dummy text of the printing"
+            android:text="Lurem Ipsum is simply dummy text of the printing Lurem Ipsum is simply dummy text of the printing Lurem Ipsum is simply dummy text of the printing Lurem Ipsum is simply dummy text of the printing
+Lurem Ipsum is simply dummy text of the printing Lurem Ipsum is simply dummy text of the printing
+Lurem Ipsum is simply dummy text of the printing Lurem Ipsum is simply dummy text of the printing"
             android:textColor="@color/purpleColor"
             android:textSize="@dimen/twelve_sp" />
 
@@ -40,18 +42,6 @@
         android:gravity="right|center_vertical"
         android:orientation="horizontal">
 
-        <ImageView
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:src="@drawable/ic_like_fill" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="4dp"
-            android:text="123456"
-            android:textColor="@color/grayColor"
-            android:textSize="12dp" />
 
         <ImageView
             android:layout_width="16dp"
@@ -73,6 +63,7 @@
             android:src="@drawable/ic_saved_purple" />
 
         <ImageView
+            android:id="@+id/iv_share_notify"
             android:layout_width="20dp"
             android:layout_height="16dp"
             android:layout_marginHorizontal="4dp"

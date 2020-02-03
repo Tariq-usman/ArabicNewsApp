@@ -1,5 +1,6 @@
 package com.system.user.arabicnewsapp.fragments.settings;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +19,7 @@ import com.system.user.arabicnewsapp.R;
 public class SettingsFragment extends Fragment implements View.OnClickListener {
     private FrameLayout layoutSearchBar, layoutMenu;
     private LinearLayout layoutSettings, layoutNewsTools, layoutAboutUs, layoutTermsConditions, layoutSupport;
-    private ImageView ivBackBtn;
+    private ImageView ivBackBtn,ivShareBtn;
     private TextView textViewTitle;
 
     @Nullable
@@ -29,6 +30,8 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         textViewTitle.setText("Menu");
         ivBackBtn = getActivity().findViewById(R.id.back_btn_settings);
         ivBackBtn.setVisibility(View.INVISIBLE);
+        ivShareBtn = view.findViewById(R.id.iv_share);
+        ivShareBtn.setOnClickListener(this);
 
         layoutSearchBar = getActivity().findViewById(R.id.main_search_bar_layout);
         layoutSearchBar.setVisibility(View.GONE);
@@ -53,6 +56,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.layout_settings:
+                getFragmentManager().beginTransaction().replace(R.id.main_container,new NotificationsSettingsFragment()).commit();
                 break;
             case R.id.layout_tools:
                 getFragmentManager().beginTransaction().replace(R.id.main_container,new NewsToolsFragment()).commit();
@@ -64,6 +68,13 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                 getFragmentManager().beginTransaction().replace(R.id.main_container,new TermsConditonsFragment()).commit();
                 break;
             case R.id.layout_support:
+                getFragmentManager().beginTransaction().replace(R.id.main_container,new SupportFragment()).commit();
+                break;
+            case R.id.iv_share:
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                shareIntent.setType("text/plain");
+                shareIntent.putExtra(Intent.EXTRA_TEXT,"");
+                startActivity(Intent.createChooser(shareIntent,"Share via"));
                 break;
         }
     }
